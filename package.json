@@ -1,0 +1,36 @@
+{
+  "name": "setom",
+  "description": "S-Expression to Markup",
+  "version": "0.0.1",
+  "homepage": "http://github.com/shmoop/setom",
+  "author": "Wesley Sun <wesleyksun@gmail.com>",
+  "contributors": [
+    {
+      "name": "Ben Rothman",
+      "url": "http://www.bensrothman.com"
+    }
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/shmoop/setom.git"
+  },
+  "licenses": [
+    {
+      "type": "MIT"
+    }
+  ],
+  "main": "setom.js",
+  "jscsConfig": {
+    "preset": "jquery"
+  },
+  "devDependencies": {
+    "chai": "^1.9.1",
+    "jscs": "^1.5.8",
+    "jshint": "^2.5.2",
+    "mocha": "^1.20.1",
+    "gulp": "^3.8.6",
+    "gulp-jscs": "^0.6.0",
+    "gulp-jshint": "^1.7.1",
+    "gulp-mocha": "^0.5.1"
+  }
+}
