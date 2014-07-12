@@ -32,9 +32,9 @@ describe("Setom Tests", function() {
 			.to.equal("<a>b<c e='f g' i='j'>dh</c>k l</a>");
 	});
 
-	// it("should parse multiple top-level expressions", function() {
-	// 	expect(fML("(a) (b)")).to.equal("<a></a><b></b>");
-	// });
+	it("should parse multiple top-level expressions", function() {
+		expect(fML("(a) (b)")).to.equal("<a></a><b></b>");
+	});
 
 	it("should throw an error for unbalanced parentheses", function() {
 		expect(fML.bind(fML, "(()")).to.throw(/unbalanced/i);
