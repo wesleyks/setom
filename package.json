@@ -1,7 +1,7 @@
 {
   "name": "setom",
   "description": "S-Expression to Markup",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "homepage": "http://github.com/shmoop/setom",
   "author": "Wesley Sun (http://www.wksun.com/)",
   "contributors": [
