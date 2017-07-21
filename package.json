@@ -2,7 +2,7 @@
   "name": "setom",
   "description": "S-Expression to Markup",
   "version": "0.0.2",
-  "homepage": "http://github.com/shmoop/setom",
+  "homepage": "http://github.com/wesleyks/setom",
   "author": "Wesley Sun (http://www.wksun.com/)",
   "contributors": [
     {
@@ -12,7 +12,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git://github.com/shmoop/setom.git"
+    "url": "git://github.com/wesleyks/setom.git"
   },
   "licenses": [
     {
