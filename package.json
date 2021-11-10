@@ -1,6 +1,6 @@
 {
   "name": "setom",
-  "version": "0.0.2",
+  "version": "1.0.0",
   "description": "S-Expression to Markup",
   "main": "build/main/index.js",
   "typings": "build/main/index.d.ts",
