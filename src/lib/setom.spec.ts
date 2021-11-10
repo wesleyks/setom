@@ -11,6 +11,7 @@ test('it should parse basic elements', (t) => {
 
 test('it should parse elements with declared attributes', (t) => {
   t.is(toHTML('(a :b c)'), '<a b="c"></a>');
+  t.is(toHTML('(a :b "")'), '<a b=""></a>');
   t.is(toHTML('(a :b c (d))'), '<a b="c"><d></d></a>');
   t.is(toHTML('(a (b) :c d)'), '<a c="d"><b></b></a>');
 });
@@ -36,6 +37,12 @@ test('it should throw an error for unbalanced parentheses', (t) => {
   });
 
   t.regex(error.message, /Missing closing parentheses/);
+
+  const error2 = t.throws(() => {
+    toHTML('())');
+  });
+
+  t.regex(error2.message, /Unexpected closing parentheses/);
 });
 
 test('it should throw an error for invalid tag constructor', (t) => {

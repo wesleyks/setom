@@ -40,7 +40,7 @@ function constructHTML(tokens: string[]) {
       }
     } else if (token[0] === ':') {
       const key = token.substring(1);
-      const value = stripOuterQuotes(tokens.shift() ?? '');
+      const value = stripOuterQuotes(tokens.shift() as string);
       attributes.push({ key, value });
     } else {
       innerContent.push(stripOuterQuotes(token));
