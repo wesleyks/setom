@@ -1,0 +1,165 @@
+<!doctype html>
+<html class="default no-js">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>setom</title>
+	<meta name="description" content="Documentation for setom">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="assets/css/main.css">
+</head>
+<body>
+<header>
+	<div class="tsd-page-toolbar">
+		<div class="container">
+			<div class="table-wrap">
+				<div class="table-cell" id="tsd-search" data-index="assets/js/search.json" data-base=".">
+					<div class="field">
+						<label for="tsd-search-field" class="tsd-widget search no-caption">Search</label>
+						<input id="tsd-search-field" type="text" />
+					</div>
+					<ul class="results">
+						<li class="state loading">Preparing search index...</li>
+						<li class="state failure">The search index is not available</li>
+					</ul>
+					<a href="index.html" class="title">setom</a>
+				</div>
+				<div class="table-cell" id="tsd-widgets">
+					<div id="tsd-filter">
+						<a href="#" class="tsd-widget options no-caption" data-toggle="options">Options</a>
+						<div class="tsd-filter-group">
+							<div class="tsd-select" id="tsd-filter-visibility">
+								<span class="tsd-select-label">All</span>
+								<ul class="tsd-select-list">
+									<li data-value="public">Public</li>
+									<li data-value="protected">Public/Protected</li>
+									<li data-value="private" class="selected">All</li>
+								</ul>
+							</div>
+							<input type="checkbox" id="tsd-filter-inherited" checked />
+							<label class="tsd-widget" for="tsd-filter-inherited">Inherited</label>
+							<input type="checkbox" id="tsd-filter-externals" checked />
+							<label class="tsd-widget" for="tsd-filter-externals">Externals</label>
+							<input type="checkbox" id="tsd-filter-only-exported" />
+							<label class="tsd-widget" for="tsd-filter-only-exported">Only exported</label>
+						</div>
+					</div>
+					<a href="#" class="tsd-widget menu no-caption" data-toggle="menu">Menu</a>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="tsd-page-title">
+		<div class="container">
+			<ul class="tsd-breadcrumb">
+				<li>
+					<a href="globals.html">Globals</a>
+				</li>
+			</ul>
+			<h1>setom</h1>
+		</div>
+	</div>
+</header>
+<div class="container container-main">
+	<div class="row">
+		<div class="col-8 col-content">
+			<div class="tsd-panel tsd-typography">
+				<a href="#setom" id="setom" style="color: inherit; text-decoration: none;">
+					<h1>setom</h1>
+				</a>
+				<p>S-Expression to Markup</p>
+				<a href="#usage" id="usage" style="color: inherit; text-decoration: none;">
+					<h2>Usage</h2>
+				</a>
+				<a href="#basic" id="basic" style="color: inherit; text-decoration: none;">
+					<h3>Basic</h3>
+				</a>
+				<pre><code class="language-js"><span class="hljs-keyword">import</span> { toHTML } <span class="hljs-keyword">from</span> setom;
+toHTML(<span class="hljs-string">&#x27;(a)&#x27;</span>);
+</code></pre>
+				<pre><code class="language-html"><span class="hljs-tag">&lt;<span class="hljs-name">a</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span>
+</code></pre>
+				<a href="#nested" id="nested" style="color: inherit; text-decoration: none;">
+					<h3>Nested</h3>
+				</a>
+				<pre><code class="language-js">toHTML(<span class="hljs-string">&#x27;(div (a))&#x27;</span>);
+</code></pre>
+				<pre><code class="language-html"><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">a</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+</code></pre>
+				<a href="#nested-with-multiple-children" id="nested-with-multiple-children" style="color: inherit; text-decoration: none;">
+					<h3>Nested with Multiple Children</h3>
+				</a>
+				<pre><code class="language-js">toHTML(<span class="hljs-string">&#x27;(div (a) (a))&#x27;</span>);
+</code></pre>
+				<pre><code class="language-html"><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">a</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">a</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+</code></pre>
+				<a href="#text-content" id="text-content" style="color: inherit; text-decoration: none;">
+					<h3>Text Content</h3>
+				</a>
+				<pre><code class="language-js">toHTML(<span class="hljs-string">&#x27;(p a)&#x27;</span>);
+</code></pre>
+				<pre><code class="language-html"><span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>a<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+</code></pre>
+				<p>or</p>
+				<pre><code class="language-js">toHTML(<span class="hljs-string">&#x27;(p &quot;banana&quot;)&#x27;</span>);
+</code></pre>
+				<pre><code class="language-html"><span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>banana<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+</code></pre>
+				<p>or</p>
+				<pre><code class="language-js">toHTML(<span class="hljs-string">&#x27;(p &quot;ban&quot; &quot;ana&quot;)&#x27;</span>);
+</code></pre>
+				<pre><code class="language-html"><span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>banana<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+</code></pre>
+				<a href="#attributes" id="attributes" style="color: inherit; text-decoration: none;">
+					<h3>Attributes</h3>
+				</a>
+				<pre><code class="language-js">toHTML(<span class="hljs-string">&#x27;(a :href &quot;github.com&quot;)&#x27;</span>);
+</code></pre>
+				<pre><code class="language-html"><span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">&quot;github.com&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span>
+</code></pre>
+			</div>
+		</div>
+		<div class="col-4 col-menu menu-sticky-wrap menu-highlight">
+			<nav class="tsd-navigation primary">
+				<ul>
+					<li class="globals  ">
+						<a href="globals.html"><em>Globals</em></a>
+					</li>
+				</ul>
+			</nav>
+			<nav class="tsd-navigation secondary menu-sticky">
+				<ul class="before-current">
+					<li class=" tsd-kind-function">
+						<a href="globals.html#constructhtml" class="tsd-kind-icon">constructHTML</a>
+					</li>
+					<li class=" tsd-kind-function">
+						<a href="globals.html#stripouterquotes" class="tsd-kind-icon">strip<wbr>Outer<wbr>Quotes</a>
+					</li>
+					<li class=" tsd-kind-function">
+						<a href="globals.html#tohtml" class="tsd-kind-icon">toHTML</a>
+					</li>
+					<li class=" tsd-kind-function">
+						<a href="globals.html#validateexpressionsnotempty" class="tsd-kind-icon">validate<wbr>Expressions<wbr>Not<wbr>Empty</a>
+					</li>
+					<li class=" tsd-kind-function">
+						<a href="globals.html#validatematchingparentheses" class="tsd-kind-icon">validate<wbr>Matching<wbr>Parentheses</a>
+					</li>
+				</ul>
+			</nav>
+		</div>
+	</div>
+</div>
+<footer class="with-border-bottom">
+	<div class="container">
+		<h2>Legend</h2>
+		<div class="tsd-legend-group">
+		</div>
+	</div>
+</footer>
+<div class="container tsd-generator">
+	<p>Generated using <a href="https://typedoc.org/" target="_blank">TypeDoc</a></p>
+</div>
+<div class="overlay"></div>
+<script src="assets/js/main.js"></script>
+</body>
+</html>
