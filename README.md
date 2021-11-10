@@ -1,39 +1,46 @@
-setom
-=====
-[![Build Status](https://travis-ci.org/wesleyks/setom.svg?branch=master)](https://travis-ci.org/wesleyks/setom)
+# setom
 
-S-Expression to Markup library
+S-Expression to Markup
 
 ## Usage
 
 ### Basic
+
 ```js
-setom.parse('(a)')
+import { toHTML } from setom;
+toHTML('(a)');
 ```
+
 ```html
 <a></a>
 ```
 
 ### Nested
+
 ```js
-setom.parse('(div (a))')
+toHTML('(div (a))');
 ```
+
 ```html
 <div><a></a></div>
 ```
 
 ### Nested with Multiple Children
+
 ```js
-setom.parse('(div (a) (a))')
+toHTML('(div (a) (a))');
 ```
+
 ```html
 <div><a></a><a></a></div>
 ```
 
 ### Text Content
+
 ```js
-setom.parse('(p a)')
+toHTML('(p a)');
 ```
+
 ```html
 <p>a</p>
 ```
@@ -41,8 +48,9 @@ setom.parse('(p a)')
 or
 
 ```js
-setom.parse('(p "banana")')
+toHTML('(p "banana")');
 ```
+
 ```html
 <p>banana</p>
 ```
@@ -50,16 +58,19 @@ setom.parse('(p "banana")')
 or
 
 ```js
-setom.parse('(p "ban" "ana")')
+toHTML('(p "ban" "ana")');
 ```
+
 ```html
 <p>banana</p>
 ```
 
 ### Attributes
+
 ```js
-setom.parse('(a :href "github.com")')
+toHTML('(a :href "github.com")');
 ```
+
 ```html
-<a href='github.com'></a>
+<a href="github.com"></a>
 ```
