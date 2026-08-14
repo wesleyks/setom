@@ -26,7 +26,11 @@ jobs:
           node-version: ${{ matrix.node }}
           cache: npm
       - run: npm ci
-      - run: npm test
+      - run: npm run test:source
+      - if: matrix.node == 22
+        run: npm pack --dry-run
+      - if: matrix.node == 22
+        run: npm run test:package
 
   coverage:
     name: Coverage threshold (Node 22)
