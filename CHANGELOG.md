@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file.
 
+## [2.0.0](https://github.com/wesleyks/setom/compare/v1.0.1...v2.0.0) (2026-08-14)
+
+
+### ⚠ BREAKING CHANGES
+
+* publish dual module package
+
+### Features
+
+* publish dual module package ([fdda763](https://github.com/wesleyks/setom/commit/fdda76362034afbda246c43827e1b3727c6db28d))
+
 ### [1.0.1](https://github.com/wesleyks/setom/compare/v1.0.0...v1.0.1) (2026-08-14)
 
 
