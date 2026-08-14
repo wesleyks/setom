@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict';
 import { execFile as execFileCallback } from 'node:child_process';
-import { mkdtemp, mkdir, rm, writeFile } from 'node:fs/promises';
+import { mkdtemp, mkdir, readFile, rm, writeFile } from 'node:fs/promises';
 import os from 'node:os';
 import path from 'node:path';
 import { promisify } from 'node:util';
@@ -18,6 +18,9 @@ const typescriptCli = path.join(
   'lib',
   'tsc.js',
 );
+const packageVersion = JSON.parse(
+  await readFile(path.join(repositoryDirectory, 'package.json'), 'utf8'),
+).version;
 
 async function run(command, arguments_, options) {
   try {
@@ -54,7 +57,7 @@ try {
   );
   const [packedPackage] = JSON.parse(stdout);
   assert.equal(packedPackage.name, 'setom');
-  assert.equal(packedPackage.version, '2.0.0');
+  assert.equal(packedPackage.version, packageVersion);
   assert.deepEqual(
     packedPackage.files.map((file) => file.path).sort(),
     [
