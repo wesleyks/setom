@@ -15,9 +15,9 @@
       }
     }
   },
-  "homepage": "http://github.com/wesleyks/setom",
+  "homepage": "https://github.com/wesleyks/setom",
   "bugs": {
-    "url": "http://github.com/wesleyks/setom/issues"
+    "url": "https://github.com/wesleyks/setom/issues"
   },
   "author": "Wesley Sun (http://www.wksun.com/)",
   "contributors": [
@@ -28,13 +28,13 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git://github.com/wesleyks/setom.git"
+    "url": "https://github.com/wesleyks/setom.git"
   },
-  "licenses": [
-    {
-      "type": "MIT"
-    }
-  ],
+  "license": "MIT",
+  "sideEffects": false,
+  "publishConfig": {
+    "access": "public"
+  },
   "keywords": [
     "s-expression",
     "markup"

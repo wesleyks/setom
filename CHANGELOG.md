@@ -2,13 +2,6 @@
 
 All notable changes to this project will be documented in this file.
 
-## [2.0.0] - Unreleased
-
-### Breaking Changes
-
-* publish explicit CommonJS and native ESM entry points through a root-only `exports` map
-* remove undocumented deep-import support
-
 ### [1.0.1](https://github.com/wesleyks/setom/compare/v1.0.0...v1.0.1) (2026-08-14)
 
 
