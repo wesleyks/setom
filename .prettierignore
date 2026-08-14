@@ -1,2 +1,10 @@
 # package.json is formatted by package managers, so we ignore it here
 package.json
+package-lock.json
+
+# Generated output and editor state are not source formatting targets.
+.nyc_output/
+build/
+coverage/
+.vscode/
+CHANGELOG.md
