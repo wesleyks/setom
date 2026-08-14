@@ -21,3 +21,7 @@ npm run test:coverage
 ```
 
 `npm test` is read-only with respect to tracked source files. Use `npm run check:fix` only when you intend to apply Biome's automated fixes.
+
+## Maintainer releases
+
+See [the release runbook](../docs/RELEASING.md) for the automated Release Please and npm publishing process.
