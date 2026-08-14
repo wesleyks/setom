@@ -1,5 +1,7 @@
 # setom
 
+[![CI](https://github.com/wesleyks/setom/actions/workflows/ci.yml/badge.svg)](https://github.com/wesleyks/setom/actions/workflows/ci.yml)
+
 S-Expression to Markup
 
 ## Usage

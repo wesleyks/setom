@@ -67,7 +67,7 @@ function constructHTML(tokens: string[]) {
   return [
     `<${tag}${attributes.length ? ' ' : ''}${attributes
       .map((attr) =>
-        attr.value === undefined ? attr.key : `${attr.key}="${attr.value}"`
+        attr.value === undefined ? attr.key : `${attr.key}="${attr.value}"`,
       )
       .join(' ')}>`,
     innerContent.join(''),
@@ -88,7 +88,7 @@ function validateMatchingParentheses(tokens: string[]) {
       openCount--;
       if (openCount < 0) {
         throw new Error(
-          `Unexpected closing parentheses: ${tokens.slice(0, index).join(' ')}`
+          `Unexpected closing parentheses: ${tokens.slice(0, index).join(' ')}`,
         );
       }
     }
@@ -110,7 +110,7 @@ function validateExpressionsNotEmpty(tokens: string[]) {
         throw new Error(
           `Expression contains empty content: ${tokens
             .slice(0, index)
-            .join(' ')}`
+            .join(' ')}`,
         );
       }
     }
@@ -125,9 +125,7 @@ function validateExpressionsNotEmpty(tokens: string[]) {
 export function toHTML(input: string) {
   const tokens = input
     .split(/(\s|\(|\)|'[^']*'|"[^"]*")/)
-    .filter(function (el) {
-      return el !== '' && el !== ' ';
-    });
+    .filter((el) => el !== '' && el !== ' ');
 
   validateMatchingParentheses(tokens);
   validateExpressionsNotEmpty(tokens);

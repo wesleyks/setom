@@ -17,7 +17,7 @@ Before opening a pull request, run:
 
 ```sh
 npm test
-npm run cov:check
+npm run test:coverage
 ```
 
-`npm test` is read-only with respect to tracked source files. Use `npm run lint:fix` or `npm run format` only when you intend to apply automated fixes.
+`npm test` is read-only with respect to tracked source files. Use `npm run check:fix` only when you intend to apply Biome's automated fixes.
