@@ -25,7 +25,7 @@ function stripOuterQuotes(str: string) {
  */
 function constructHTML(tokens: string[]) {
   const innerContent: string[] = [];
-  const attributes: { key: string; value: string }[] = [];
+  const attributes: { key: string; value?: string }[] = [];
   let tag = '';
   let token = tokens.shift();
 
@@ -38,10 +38,26 @@ function constructHTML(tokens: string[]) {
         tokens.unshift(token);
         innerContent.push(constructHTML(tokens));
       }
-    } else if (token[0] === ':') {
-      const key = token.substring(1);
-      const value = stripOuterQuotes(tokens.shift() as string);
-      attributes.push({ key, value });
+    } else if (token[0] === ':' || token[token.length - 1] === ':') {
+      const key =
+        token[0] === ':'
+          ? token.substring(1)
+          : token.substring(0, token.length - 1);
+      const nextToken = tokens[0];
+
+      if (
+        !nextToken ||
+        nextToken === '(' ||
+        nextToken === ')' ||
+        nextToken[0] === ':'
+      ) {
+        attributes.push({ key });
+      } else {
+        attributes.push({
+          key,
+          value: stripOuterQuotes(tokens.shift() as string),
+        });
+      }
     } else {
       innerContent.push(stripOuterQuotes(token));
     }
@@ -50,7 +66,9 @@ function constructHTML(tokens: string[]) {
 
   return [
     `<${tag}${attributes.length ? ' ' : ''}${attributes
-      .map((attr) => `${attr.key}="${attr.value}"`)
+      .map((attr) =>
+        attr.value === undefined ? attr.key : `${attr.key}="${attr.value}"`
+      )
       .join(' ')}>`,
     innerContent.join(''),
     `</${tag}>`,

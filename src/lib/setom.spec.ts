@@ -16,6 +16,14 @@ test('it should parse elements with declared attributes', (t) => {
   t.is(toHTML('(a (b) :c d)'), '<a c="d"><b></b></a>');
 });
 
+test('it should parse boolean and inline declared attributes', (t) => {
+  t.is(
+    toHTML('(input id:"5" :readonly :checked :type "checkbox")'),
+    '<input id="5" readonly checked type="checkbox"></input>'
+  );
+  t.is(toHTML('(input :disabled)'), '<input disabled></input>');
+});
+
 test('it should parse escaped single and double quotes', (t) => {
   t.is(toHTML("(a '(')"), '<a>(</a>');
   t.is(toHTML('(a "(")'), '<a>(</a>');

@@ -74,3 +74,13 @@ toHTML('(a :href "github.com")');
 ```html
 <a href="github.com"></a>
 ```
+
+### Boolean Attributes
+
+```js
+toHTML('(input id:"5" :readonly :checked :type "checkbox")');
+```
+
+```html
+<input id="5" readonly checked type="checkbox"></input>
+```
