@@ -34,6 +34,7 @@ const temporaryDirectory = await mkdtemp(path.join(os.tmpdir(), 'setom-pack-'));
 const npmCacheDirectory = path.join(temporaryDirectory, 'npm-cache');
 const packDirectory = path.join(temporaryDirectory, 'pack');
 const consumerDirectory = path.join(temporaryDirectory, 'consumer');
+const esmConsumerDirectory = path.join(consumerDirectory, 'esm');
 const npmEnvironment = { ...process.env, npm_config_cache: npmCacheDirectory };
 
 try {
@@ -53,11 +54,25 @@ try {
   );
   const [packedPackage] = JSON.parse(stdout);
   assert.equal(packedPackage.name, 'setom');
+  assert.equal(packedPackage.version, '2.0.0');
+  assert.deepEqual(
+    packedPackage.files.map((file) => file.path).sort(),
+    [
+      'CHANGELOG.md',
+      'LICENSE',
+      'README.md',
+      'dist/index.cjs',
+      'dist/index.d.cts',
+      'dist/index.d.mts',
+      'dist/index.mjs',
+      'package.json',
+    ],
+  );
   const tarballPath = path.join(packDirectory, packedPackage.filename);
 
   await writeFile(
     path.join(consumerDirectory, 'package.json'),
-    JSON.stringify({ private: true }),
+    JSON.stringify({ private: true, type: 'commonjs' }),
   );
   await run(
     process.execPath,
@@ -82,7 +97,7 @@ try {
   );
 
   await writeFile(
-    path.join(consumerDirectory, 'index.ts'),
+    path.join(consumerDirectory, 'index.cts'),
     "import { toHTML } from 'setom';\nconst html: string = toHTML('(a)');\nvoid html;\n",
   );
   await run(
@@ -97,9 +112,68 @@ try {
       'Node16',
       '--target',
       'ES2022',
-      'index.ts',
+      'index.cts',
     ],
     { cwd: consumerDirectory },
+  );
+
+  await assert.rejects(
+    () =>
+      run(
+        process.execPath,
+        ['-e', "require('setom/dist/index.cjs')"],
+        { cwd: consumerDirectory },
+      ),
+    /ERR_PACKAGE_PATH_NOT_EXPORTED/,
+  );
+
+  await mkdir(esmConsumerDirectory);
+  await writeFile(
+    path.join(esmConsumerDirectory, 'package.json'),
+    JSON.stringify({ private: true, type: 'module' }),
+  );
+  await writeFile(
+    path.join(esmConsumerDirectory, 'index.mjs'),
+    "import { toHTML } from 'setom';\nif (toHTML('(a)') !== '<a></a>') process.exit(1);\n",
+  );
+  await run(process.execPath, ['index.mjs'], { cwd: esmConsumerDirectory });
+
+  const typeSource =
+    "import { toHTML } from 'setom';\nconst html: string = toHTML('(a)');\nvoid html;\n";
+  await writeFile(path.join(esmConsumerDirectory, 'index.mts'), typeSource);
+  await run(
+    process.execPath,
+    [
+      typescriptCli,
+      '--noEmit',
+      '--strict',
+      '--module',
+      'NodeNext',
+      '--moduleResolution',
+      'NodeNext',
+      '--target',
+      'ES2022',
+      'index.mts',
+    ],
+    { cwd: esmConsumerDirectory },
+  );
+
+  await writeFile(path.join(esmConsumerDirectory, 'bundler.ts'), typeSource);
+  await run(
+    process.execPath,
+    [
+      typescriptCli,
+      '--noEmit',
+      '--strict',
+      '--module',
+      'ESNext',
+      '--moduleResolution',
+      'bundler',
+      '--target',
+      'ES2022',
+      'bundler.ts',
+    ],
+    { cwd: esmConsumerDirectory },
   );
 } finally {
   await rm(temporaryDirectory, { recursive: true, force: true });

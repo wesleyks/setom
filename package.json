@@ -1,11 +1,20 @@
 {
   "name": "setom",
-  "version": "1.0.1",
+  "version": "2.0.0",
   "packageManager": "npm@11.2.0",
   "description": "S-Expression to Markup",
-  "main": "build/main/index.js",
-  "typings": "build/main/index.d.ts",
-  "module": "build/module/index.js",
+  "exports": {
+    ".": {
+      "import": {
+        "types": "./dist/index.d.mts",
+        "default": "./dist/index.mjs"
+      },
+      "require": {
+        "types": "./dist/index.d.cts",
+        "default": "./dist/index.cjs"
+      }
+    }
+  },
   "homepage": "http://github.com/wesleyks/setom",
   "bugs": {
     "url": "http://github.com/wesleyks/setom/issues"
@@ -31,33 +40,31 @@
     "markup"
   ],
   "scripts": {
-    "build": "npm run build:main && npm run build:module",
-    "build:main": "tsc -p tsconfig.json",
-    "build:module": "tsc -p tsconfig.module.json",
+    "build": "tsdown --logLevel error",
+    "build:test": "tsc -p tsconfig.json",
     "prepack": "npm run build",
     "test": "npm run test:source && npm run test:package",
-    "test:source": "npm run build && npm run typecheck && npm run check && npm run test:unit",
+    "test:source": "npm run build:test && npm run typecheck && npm run check && npm run test:unit",
     "test:package": "node scripts/package-smoke.mjs",
-    "typecheck": "tsc --noEmit -p tsconfig.json && tsc --noEmit -p tsconfig.module.json",
+    "typecheck": "tsc --noEmit -p tsconfig.json",
     "check": "biome check src",
     "check:fix": "biome check --write src",
     "test:unit": "node --test build/main/lib/setom.spec.js",
-    "test:coverage": "node --test --experimental-test-coverage --test-coverage-exclude=build/main/lib/setom.spec.js --test-coverage-lines=95 --test-coverage-functions=95 --test-coverage-branches=95 build/main/lib/setom.spec.js",
-    "watch:build": "tsc -p tsconfig.json -w",
+    "test:coverage": "npm run build:test && node --test --experimental-test-coverage --test-coverage-exclude=build/main/lib/setom.spec.js --test-coverage-lines=95 --test-coverage-functions=95 --test-coverage-branches=95 build/main/lib/setom.spec.js",
+    "watch:build": "tsdown --watch",
     "watch:test": "node --test --watch build/main/lib/setom.spec.js"
   },
   "engines": {
     "node": ">=22"
   },
-  "dependencies": {},
   "devDependencies": {
     "@biomejs/biome": "^2.5.8",
     "@types/node": "^22.0.0",
+    "tsdown": "^0.21.10",
     "typescript": "^5.9.3"
   },
   "files": [
-    "build/main",
-    "build/module",
+    "dist",
     "!**/*.spec.*",
     "!**/*.json",
     "CHANGELOG.md",

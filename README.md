@@ -4,14 +4,25 @@
 
 S-Expression to Markup
 
+Requires Node.js 22 or later. The package supports both native ESM and CommonJS.
+
 ## Usage
 
-### Basic
+### Native ESM
 
 ```js
-import { toHTML } from setom;
+import { toHTML } from 'setom';
 toHTML('(a)');
 ```
+
+### CommonJS
+
+```js
+const { toHTML } = require('setom');
+toHTML('(a)');
+```
+
+### Basic
 
 ```html
 <a></a>
