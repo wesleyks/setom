@@ -1,6 +1,6 @@
 {
   "name": "setom",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "packageManager": "npm@11.2.0",
   "description": "S-Expression to Markup",
   "exports": {
