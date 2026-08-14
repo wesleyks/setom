@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file.
 
+## [2.0.1](https://github.com/wesleyks/setom/compare/v2.0.0...v2.0.1) (2026-08-14)
+
+
+### Bug Fixes
+
+* publish releases from release please workflow ([#3](https://github.com/wesleyks/setom/issues/3)) ([6cfd31a](https://github.com/wesleyks/setom/commit/6cfd31abd172bec5ad5ce50b07fb592ddae86c41))
+* verify packed package version dynamically ([#5](https://github.com/wesleyks/setom/issues/5)) ([5cfe94d](https://github.com/wesleyks/setom/commit/5cfe94d0c395a4970973328e8e9ca9f32767b336))
+
 ## [2.0.0](https://github.com/wesleyks/setom/compare/v1.0.1...v2.0.0) (2026-08-14)
 
 
